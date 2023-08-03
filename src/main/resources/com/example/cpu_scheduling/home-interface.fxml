@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="813.0" prefWidth="1364.0" style="-fx-background-color: silver;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cpu_scheduling.HomeController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68cc86" height="408.0" layoutX="782.0" layoutY="77.0" stroke="WHITE" strokeType="INSIDE" width="565.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68cc86" height="293.0" layoutX="14.0" layoutY="77.0" stroke="WHITE" strokeType="INSIDE" styleClass="rectangleOne" width="746.0" />
+      <Button ellipsisString="+" layoutX="120.0" layoutY="331.0" mnemonicParsing="false" onAction="#addQuantumClicked" prefHeight="25.0" prefWidth="12.0" stylesheets="@style.css" text="+" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68cc86" height="200.0" layoutY="-160.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1364.0" />
+      <Button fx:id="computeButton" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="626.0" layoutY="327.0" mnemonicParsing="false" onAction="#computeClicked" prefHeight="27.0" prefWidth="113.0" stylesheets="@style.css" text="Compute" textAlignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TableView fx:id="tableView" editable="true" layoutX="168.0" layoutY="92.0" prefHeight="200.0" prefWidth="573.0" style="-fx-alignment: center; -fx-background-color: #d6ffe2;" styleClass="column-header-background" stylesheets="@style.css">
+        <columns>
+          <TableColumn fx:id="processName" prefWidth="75.0" style="-fx-alignment: center;" text="Process" />
+          <TableColumn fx:id="arrivalTimeTable" prefWidth="75.0" style="-fx-alignment: center;" text="Arrival Time" />
+            <TableColumn fx:id="burstTimeTable" prefWidth="75.0" style="-fx-alignment: center;" text="Burst Time" />
+            <TableColumn fx:id="priorityTable" prefWidth="75.0" style="-fx-alignment: center;" text="Priority" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <TextField fx:id="inputArrivalTime" alignment="CENTER" layoutX="34.0" layoutY="92.0" onKeyReleased="#keyReleased" prefHeight="25.0" prefWidth="113.0" promptText="Arrival Time">
+         <effect>
+            <InnerShadow blurType="ONE_PASS_BOX">
+               <color>
+                  <Color red="0.027450980618596077" green="0.125490203499794" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect></TextField>
+      <TextField fx:id="inputBurstTime" alignment="CENTER" layoutX="34.0" layoutY="135.0" onKeyReleased="#keyReleased" prefHeight="25.0" prefWidth="113.0" promptText="Burst Time">
+         <effect>
+            <InnerShadow blurType="ONE_PASS_BOX">
+               <color>
+                  <Color red="0.027450980618596077" green="0.125490203499794" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect></TextField>
+      <TextField fx:id="inputPriority" alignment="CENTER" layoutX="34.0" layoutY="177.0" onKeyReleased="#keyReleased" prefHeight="25.0" prefWidth="113.0" promptText="Priority">
+         <effect>
+            <InnerShadow blurType="ONE_PASS_BOX">
+               <color>
+                  <Color red="0.027450980618596077" green="0.125490203499794" blue="1.0" />
+               </color>
+            </InnerShadow>
+         </effect></TextField>
+      <Button fx:id="addProcessButton" defaultButton="true" disable="true" layoutX="33.0" layoutY="223.0" mnemonicParsing="false" onAction="#addProcessClicked" prefHeight="27.0" prefWidth="113.0" text="Add Process">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="removeProcessButton" cancelButton="true" disable="true" layoutX="33.0" layoutY="265.0" mnemonicParsing="false" onAction="#removeProcessClicked" prefHeight="27.0" prefWidth="113.0" text="Remove Process">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TextField fx:id="inputQuantumTime" alignment="CENTER" layoutX="61.0" layoutY="332.0" prefHeight="25.0" prefWidth="59.0">
+         <effect>
+            <Blend />
+         </effect></TextField>
+      <Label alignment="CENTER" layoutX="40.0" layoutY="309.0" prefHeight="17.0" prefWidth="102.0" text="Quantum Time" />
+      <Pane layoutX="14.0" layoutY="399.0" prefHeight="489.0" prefWidth="746.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68cc86" height="46.0" layoutY="358.0" stroke="WHITE" strokeType="INSIDE" width="977.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68cc86" height="353.0" layoutY="-3.0" stroke="WHITE" strokeType="INSIDE" width="746.0" />
+            <TableView fx:id="tableViewOutput" layoutX="19.0" layoutY="68.0" prefHeight="200.0" prefWidth="708.0" style="-fx-alignment: center; -fx-background-color: #d6ffe2;">
+               <columns>
+                  <TableColumn fx:id="processOutput" prefWidth="75.0" style="-fx-alignment: center;" text="Process" />
+                  <TableColumn fx:id="arrivalTimeOutput" prefWidth="75.0" style="-fx-alignment: center;" text="Arrival Time" />
+                  <TableColumn fx:id="burstTimeOutput" prefWidth="75.0" style="-fx-alignment: center;" text="Burst Time" />
+                  <TableColumn fx:id="priorityOutput" prefWidth="75.0" style="-fx-alignment: center;" text="Priority" />
+                  <TableColumn fx:id="waitingTimeOutput" prefWidth="75.0" style="-fx-alignment: center;" text="Waiting Time" />
+                  <TableColumn fx:id="turnAroundOutput" prefWidth="75.0" style="-fx-alignment: center;" text="Turn Around Time" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Label alignment="CENTER" layoutX="103.0" layoutY="304.0" prefHeight="17.0" prefWidth="156.0" text="Average Waiting Time">
+               <font>
+                  <Font name="Arial Narrow" size="18.0" />
+               </font></Label>
+            <Label alignment="CENTER" layoutX="403.0" layoutY="304.0" prefHeight="17.0" prefWidth="178.0" text="Average Turnaround Time">
+               <font>
+                  <Font name="Arial Narrow" size="18.0" />
+               </font></Label>
+            <Label fx:id="outputTurnAroundTime" alignment="CENTER" layoutX="597.0" layoutY="304.0" prefHeight="17.0" prefWidth="66.0">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="outputWaitingTime" alignment="CENTER" layoutX="282.0" layoutY="304.0" prefHeight="17.0" prefWidth="66.0">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="titleCPU1" layoutX="21.0" layoutY="15.0" prefHeight="36.0" prefWidth="164.0" text="OUTPUTS" textAlignment="CENTER" textFill="#006f25">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="190.0" layoutY="20.0" mnemonicParsing="false" onAction="#clickFCFS" prefHeight="25.0" prefWidth="79.0" text="FCFS" />
+            <Button layoutX="282.0" layoutY="20.0" mnemonicParsing="false" onAction="#clickRR" prefHeight="25.0" prefWidth="79.0" text="RR" />
+            <Button layoutX="373.0" layoutY="20.0" mnemonicParsing="false" onAction="#clickSPN" prefHeight="25.0" prefWidth="79.0" text="SPN" />
+            <Button layoutX="468.0" layoutY="20.0" mnemonicParsing="false" onAction="#clickSRTN" prefHeight="25.0" prefWidth="79.0" text="SRTN" />
+            <Button layoutX="558.0" layoutY="20.0" mnemonicParsing="false" onAction="#clickPS" prefHeight="25.0" prefWidth="79.0" text="PS" />
+            <Label fx:id="output" alignment="CENTER" contentDisplay="CENTER" layoutX="129.0" layoutY="364.0" prefHeight="35.0" prefWidth="708.0">
+               <font>
+                  <Font name="Arial" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button ellipsisString="-" layoutX="36.0" layoutY="331.0" mnemonicParsing="false" onAction="#removeQuantumClicked" prefHeight="25.0" prefWidth="25.0" stylesheets="@style.css" text="-" textAlignment="CENTER" />
+      <Button fx:id="exitButton" layoutX="1328.0" layoutY="9.0" mnemonicParsing="false" onAction="#exitClicked" style="-fx-background-color: Red;" text="X" textFill="WHITE" />
+      <BarChart fx:id="barChart" alternativeRowFillVisible="false" barGap="2.0" categoryGap="4.0" focusTraversable="true" layoutX="787.0" layoutY="83.0" prefHeight="408.0" prefWidth="553.0" style="-fx-background-color: transparent;" stylesheets="@style.css" title="Comparison">
+        <xAxis>
+          <CategoryAxis label="Scheduling Algorithms" prefHeight="56.0" prefWidth="487.0" fx:id="x">
+               <tickLabelFont>
+                  <Font size="10.0" />
+               </tickLabelFont></CategoryAxis>
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" label="Average Time" minorTickCount="10" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#68cc86" height="250.0" layoutX="782.0" layoutY="497.0" stroke="WHITE" strokeType="INSIDE" width="565.0" />
+      <Label layoutX="798.0" layoutY="513.0" text="AVERAGE WAITING TIME" textFill="#006f25">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="w1" layoutX="795.0" layoutY="572.0" prefHeight="37.0" prefWidth="79.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="915.0" layoutY="557.0" text="RR" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="796.0" layoutY="558.0" text="FCFS" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="w2" layoutX="915.0" layoutY="571.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1028.0" layoutY="559.0" text="SPN" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="1148.0" layoutY="559.0" text="SRTN" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="1262.0" layoutY="557.0" text="PS" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="w3" layoutX="1028.0" layoutY="573.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="w4" layoutX="1148.0" layoutY="571.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="w5" layoutX="1262.0" layoutY="570.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="799.0" layoutY="633.0" text="AVERAGE TURN AROUND TIME" textFill="006f25">
+         <font>
+            <Font name="Segoe UI Black" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="799.0" layoutY="678.0" text="FCFS" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="915.0" layoutY="678.0" text="RR" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="1028.0" layoutY="678.0" text="SPN" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="1148.0" layoutY="678.0" text="SRTN" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="1264.0" layoutY="678.0" text="PS" textFill="#006f25">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="t1" layoutX="799.0" layoutY="693.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="t2" layoutX="912.0" layoutY="693.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="t3" layoutX="1027.0" layoutY="694.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="t4" layoutX="1148.0" layoutY="693.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="t5" layoutX="1263.0" layoutY="693.0" textFill="#006f25">
+         <font>
+            <Font name="Arial Black" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="titleCPU" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="223.0" layoutY="4.0" lineSpacing="6.0" prefHeight="36.0" prefWidth="919.0" text="CPU scheduler" textAlignment="CENTER" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="222.0">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorSymbol" alignment="CENTER" contentDisplay="CENTER" layoutX="155.0" layoutY="314.0" prefHeight="17.0" prefWidth="17.0" text="x" textAlignment="CENTER" textFill="RED" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="refreshButton" layoutX="1265.0" layoutY="8.0" mnemonicParsing="false" onAction="#refreshClicked" style="-fx-background-color: #ff9999;" text="Refresh" />
+      <Label layoutX="223.0" layoutY="309.0" text="Default Quantum Time : 1">
+      <font>
+         <Font name="Arial Bold" size="13.0" />
+      </font>
+      </Label>
+      <Label layoutX="223.0" layoutY="332.0" text="Default Priority  : 1">
+      <font>
+         <Font name="Arial Bold" size="13.0" />
+      </font>
+      </Label>
+      <Label layoutX="1007.0" layoutY="773.0" text="Developed By : Gowsikan   |  Diluxshana  |  Jathurshan">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
